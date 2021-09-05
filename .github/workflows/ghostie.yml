@@ -1,0 +1,21 @@
+name: Ghostie
+
+on:
+  issues:
+    types: [opened, edited]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Upload with Ghostie
+        uses: TheBlocks/ghostie@v1.0.0
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          branch-name: ${{ github.event.repository.default_branch }}
+          image-folder: "images/"
+          video-folder: "videos/"
+          misc-folder: "misc/"
+          commit-msg: "Create new image/video file"
+          allowed-users: "OWNER"
